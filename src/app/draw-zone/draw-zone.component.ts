@@ -10,21 +10,16 @@ import {SpeechService} from "../services/speech/speech.service";
 export class DrawZoneComponent implements AfterViewInit {
   @ViewChild('drawZone') drawZone;
 
-  public lastCommand: boolean;
-
   private subscription: Subscription;
 
   constructor(private speechService: SpeechService) {
     this.subscription = this.speechService.lastCommand$.subscribe(
       value => {
-        this.lastCommand = value.toString();
         value.execute(this.drawZone.nativeElement);
       });
   }
 
-  ngAfterViewInit() {}
-
-
-
+  ngAfterViewInit() {
+  }
 
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
 import {Command} from "../../classes/command";
 
+declare let annyang: any;
 
 @Injectable()
 export class SpeechService {
