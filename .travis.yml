@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - stable
+before_script:
+   - npm install -g @angular/cli
+script:
+   - ng build --prod --bh /voice-draw/
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  target-branch: gh-pages
+  local-dir: dist
+  on:
+    branch: master
