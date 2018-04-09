@@ -13,8 +13,23 @@ export class SpeechService {
   public lastCommand$ = this.lastValue.asObservable();
 
   private commands = {
-    ':target :value': (target, value) => {
-      this.setCommand(target, value)
+    'up': () => {
+      this.setCommand('stroke', 'up')
+    },
+    'down': () => {
+      this.setCommand('stroke', 'down')
+    },
+    'left': () => {
+      this.setCommand('stroke', 'left')
+    },
+    'right': () => {
+      this.setCommand('stroke', 'right')
+    },
+    'draw :status': (status) => {
+      this.setCommand('draw', status)
+    }
+    'background :value': (value) => {
+      this.setCommand('background', value)
     }
   };
 

@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="col-sm-12">
-  <span class="badge badge-pill badge-success" *ngIf="isVoiceRecognitionActive" (click)="stopVoiceRecognition()">Listening</span>
+  <div class="col-sm-12 text-center">
+  <span class="badge badge-pill badge-success" *ngIf="isVoiceRecognitionActive" (click)="stopVoiceRecognition()">Listening &#9654;</span>
 
-  <span class="badge badge-pill badge-danger" *ngIf="!isVoiceRecognitionActive" (click)="startVoiceRecognition()">Paused</span>
+  <span class="badge badge-pill badge-danger pulsate" *ngIf="!isVoiceRecognitionActive" (click)="startVoiceRecognition()">Paused &#8214;</span>
   </div>
 </div>
