@@ -25,6 +25,9 @@ export class SpeechService {
     'right': () => {
       this.setCommand('stroke', 'right')
     },
+    'circle :size': (size) => {
+      this.setCommand('circle', size)
+    },
     'draw :status': (status) => {
       this.setCommand('draw', status)
     },

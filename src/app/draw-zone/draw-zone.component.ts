@@ -7,7 +7,10 @@ import {Command} from "../classes/command";
 @Component({
   selector: 'app-draw-zone',
   templateUrl: './draw-zone.component.html',
-  styleUrls: ['./draw-zone.component.css']
+  styleUrls: ['./draw-zone.component.css'],
+  host: {
+    '(window:resize)': 'onResize($event)'
+  }
 })
 export class DrawZoneComponent implements AfterViewInit {
   @ViewChild('drawZone') drawZone;
@@ -15,6 +18,21 @@ export class DrawZoneComponent implements AfterViewInit {
 
   private subscription: Subscription;
   private canvas: Canvas;
+
+  private words: string[] = [
+    'Fireworks',
+    'Flower',
+    'Pumpkin',
+    'Castle',
+    'Cat',
+    'Truck',
+    'Car',
+    'Computer',
+    'Space',
+    'House'
+  ];
+
+  public currentWord: string;
 
   constructor(private speechService: SpeechService) {
     this.subscription = this.speechService.lastCommand$.subscribe(
@@ -25,8 +43,16 @@ export class DrawZoneComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.drawZone.nativeElement.height = 3 * this.drawZone.nativeElement.width / 4;
     this.canvas = new Canvas(this.drawZone.nativeElement);
     this.canvas.execute(new Command('background', 'white'));
+    this.currentWord = this.words[Math.floor(Math.random() * this.words.length)];
+  }
+
+  private onResize(event) {
+    this.drawZone.nativeElement.height = 3 * this.drawZone.nativeElement.width / 4;
+    this.canvas.resize(this.drawZone.nativeElement.width, this.drawZone.nativeElement.height);
+    this.canvas.redraw();
   }
 
 }

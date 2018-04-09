@@ -20,7 +20,15 @@ export class Canvas {
 
   public execute(command) {
     this.commands.push(command);
+    this.redraw();
+  }
 
+  public resize(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+
+  public redraw() {
     this.currentX = this.width / 2;
     this.currentY = this.height / 2;
 
@@ -30,6 +38,7 @@ export class Canvas {
     });
 
     this.drawCross(this.currentX, this.currentY);
+
   }
 
   private draw(command) {
@@ -73,6 +82,10 @@ export class Canvas {
       }
     }
 
+    if (command.target === 'circle') {
+      this.drawCircle(this.currentX, this.currentY, command.value);
+    }
+
     if (command.target === 'draw') {
       this.shouldDraw = command.value === 'on';
     }
@@ -95,5 +108,13 @@ export class Canvas {
 
     if (shouldDraw)
       this.canvas.stroke();
+    this.canvas.closePath();
+  }
+
+  private drawCircle(posX, posY, radius) {
+    this.canvas.beginPath();
+    this.canvas.arc(posX, posY, radius, 0, 2 * Math.PI, false);
+    this.canvas.stroke();
+    this.canvas.closePath();
   }
 }
