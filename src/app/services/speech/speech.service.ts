@@ -27,7 +27,7 @@ export class SpeechService {
     },
     'draw :status': (status) => {
       this.setCommand('draw', status)
-    }
+    },
     'background :value': (value) => {
       this.setCommand('background', value)
     }

@@ -1,5 +1,3 @@
-import {ElementRef} from '@angular/core';
-
 export class Canvas {
   private canvas;
   private width;
@@ -9,7 +7,7 @@ export class Canvas {
   public currentY;
   private shouldDraw;
 
-  constructor(public element: nativeElement) {
+  constructor(public element) {
     this.canvas = this.element.getContext('2d');
     this.width = this.element.width;
     this.height = this.element.height;
