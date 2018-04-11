@@ -8,16 +8,20 @@
 
   <div class="card p-2 col-sm-8">
     <div class="row">
-      <div class="col-sm-6 text-center">
+      <div class="col-sm-2 offset-sm-1 text-center">
         <app-speech-detection></app-speech-detection>
       </div>
-      <div class="col-sm-6 text-center">
+      <div class="col-sm-2">
+        <span class="badge badge-pill badge-danger u-cursor-pointer" *ngIf="displayGrid" (click)="toggleGrid()">Hide Grid</span>
+        <span class="badge badge-pill badge-success u-cursor-pointer" *ngIf="!displayGrid" (click)="toggleGrid()">Display Grid</span>
+      </div>
+      <div class="col-sm-6 offset-sm-1 text-center">
         Draw : {{ currentWord }}
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-12 p-4">
-        <canvas id="drawCanvas" #drawZone class="w-100">
+      <div class="col-sm-12 p-4 text-center">
+        <canvas id="drawCanvas" #drawZone>
 
         </canvas>
       </div>
@@ -27,9 +31,7 @@
   <div class="card p-2 text-center col-md-2 col-sm-4">
     <h5>Commands</h5>
     <ul class="list-unstyled">
-        <li><code>background [color]</code></li>
-      <hr/>
-        <li><code>draw [on/off]</code></li>
+      <li><code>background [color]</code><br /><small>Warning, will clear the canvas</small></li>
       <hr/>
         <li><code>up</code></li>
         <li><code>down</code></li>

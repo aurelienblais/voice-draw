@@ -28,9 +28,6 @@ export class SpeechService {
     'circle :size': (size) => {
       this.setCommand('circle', size)
     },
-    'draw :status': (status) => {
-      this.setCommand('draw', status)
-    },
     'background :value': (value) => {
       this.setCommand('background', value)
     }
