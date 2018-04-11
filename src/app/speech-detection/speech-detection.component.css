@@ -1,7 +1,3 @@
-span {
-  cursor: pointer;
-}
-
 .pulsate {
   animation: pulse 1s ease infinite;
 }

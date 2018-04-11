@@ -19,6 +19,8 @@ export class DrawZoneComponent implements AfterViewInit {
   private subscription: Subscription;
   private canvas: Canvas;
 
+  public displayGrid: boolean;
+
   private words: string[] = [
     'Fireworks',
     'Flower',
@@ -32,7 +34,7 @@ export class DrawZoneComponent implements AfterViewInit {
     'House'
   ];
 
-  public currentWord: string;
+  public currentWord: string = this.words[Math.floor(Math.random() * this.words.length)];
 
   constructor(private speechService: SpeechService) {
     this.subscription = this.speechService.lastCommand$.subscribe(
@@ -43,16 +45,17 @@ export class DrawZoneComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.drawZone.nativeElement.height = 3 * this.drawZone.nativeElement.width / 4;
     this.canvas = new Canvas(this.drawZone.nativeElement);
     this.canvas.execute(new Command('background', 'white'));
-    this.currentWord = this.words[Math.floor(Math.random() * this.words.length)];
+  }
+
+  public toggleGrid() {
+    this.displayGrid = !this.displayGrid;
+    this.canvas.setDisplayGrid(this.displayGrid);
   }
 
   private onResize(event) {
-    this.drawZone.nativeElement.height = 3 * this.drawZone.nativeElement.width / 4;
-    this.canvas.resize(this.drawZone.nativeElement.width, this.drawZone.nativeElement.height);
-    this.canvas.redraw();
+    this.canvas.setSize();
   }
 
 }

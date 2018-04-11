@@ -1,4 +1,4 @@
-<span class="badge badge-pill badge-success" *ngIf="isVoiceRecognitionActive" (click)="stopVoiceRecognition()">Listening &#9654;</span>
+<span class="badge badge-pill badge-success u-cursor-pointer" *ngIf="isVoiceRecognitionActive" (click)="stopVoiceRecognition()">Listening &#9654;</span>
 
-<span class="badge badge-pill badge-danger pulsate" *ngIf="!isVoiceRecognitionActive"
+<span class="badge badge-pill badge-danger pulsate u-cursor-pointer" *ngIf="!isVoiceRecognitionActive"
       (click)="startVoiceRecognition()">Paused &#8214;</span>
