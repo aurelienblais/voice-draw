@@ -123,10 +123,6 @@ export class Canvas {
     if (command.target === 'circle') {
       this.drawCircle(this.currentX, this.currentY, command.value);
     }
-
-    if (command.target === 'draw') {
-      this.shouldDraw = command.value === 'on';
-    }
   }
 
   private drawRectangle(color, minX, minY, maxX, maxY) {
