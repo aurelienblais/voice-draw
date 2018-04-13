@@ -1,4 +1,5 @@
 export class Canvas {
+  private unitCount = 100;
   private baseUnit;
 
   private canvas;
@@ -52,7 +53,7 @@ export class Canvas {
       this.context.scale(this.ratio, this.ratio);
     }
 
-    this.baseUnit = 5 * this.ratio;
+    this.baseUnit = (this.canvas.width / this.unitCount);
     this.redraw();
 
   }
@@ -63,8 +64,8 @@ export class Canvas {
   }
 
   public redraw() {
-    this.currentX = this.canvas.width / (2 * this.ratio);
-    this.currentY = this.canvas.height / (2 * this.ratio);
+    this.currentX = this.baseUnit * (this.unitCount / 4) + this.baseUnit;
+    this.currentY = this.baseUnit * (this.unitCount / 4) - this.baseUnit;
 
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
